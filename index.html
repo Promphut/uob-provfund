@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://www.uobam.co.th/Content/css_th?v=e0X1OaATTS5Qx5jvkr_Vbi7VFSNUKnRs05Hymfa9UJs1" rel="stylesheet" />
+  <link href='https://www.uobam.co.th/Content/taxcal?v=MZ26AmoqbrKb9xoddCFNagQykxANVvuHTwKf9oDFjLM1' rel='stylesheet' defer>
+</head>
+
+<body>
+
+  <style>
+    .tax-input-label{
+      display: flex;
+      align-items: center;
+    }
+    .tax-input-label label{
+      margin-left: 10px;
+    }
+    .alert-missing{
+      color:#e1091d;
+      /* position: absolute; */
+    }
+  </style>
+
+  <div id="body">
+    <section id="content" class="content-wrapper main-content clear-fix">
+
+      <div class="taxcal-banner online">
+        <div class="taxcal-banner-box">
+          <div class="taxcal-banner-title">เครื่องมือ<br class="visible-custom" />คำนวณภาษี</div>
+        </div>
+      </div>
+      <div class="block-size">
+        <div class="tax-form" id="form-first">
+          <form onsubmit="fundCal(event)" autocomplete="off">
+            <div class="tax-head">โปรแกรมคำนวณภาษีเมื่อสิ้นสุดสมาชิก</div>
+            <div class="tax-form-content">
+              <div class="tax-align-center">
+
+                <div class="tax-col-20 tax-pull-left align-right valign-middle">
+                  <div class="d-40">สิ้นสุดสมาชิกภาพในกรณี: </div>
+                </div>
+                <div class="tax-col-70 tax-pull-left" id="exit_type">
+                  <div class="tax-input-label" >
+                    <input type="radio" name="exit_type" value="exit1" class="">
+                    <label for="exit1">ออกจากงาน</label>
+                  </div>
+                  <div class="tax-input-label">
+                    <input type="radio" name="exit_type" value="exit2" class="">
+                    <label for="exit2">ออกจากกองทุนโดยไม่ออกจากงาน</label>
+                  </div>
+                </div>
+                <div class="cleartax tax-p-20"></div>
+                <div class="tax-hr tax-p-20"></div>
+                
+                <div class="cleartax tax-p-20"></div>
+                <div class="tax-col-20 tax-pull-left align-right valign-middle">
+                  <div class="d-40">เงินสะสม : </div>
+                </div>
+                <div class="tax-col-70 tax-pull-left" id="accumulation">
+                  <input type="text" name="accumulation" onkeyup="onlyletter(event)" onkeypress="onlyletterPress(event)" onblur="setFormat(event)" class="tax-input">
+                  <div class="show-mobile custom-currency">บาท</div>
+                </div>
+                <div class="tax-col-10 tax-pull-left valign-middle hide-mobile-table">
+                  <div class="d-40">บาท</div>
+                </div>
+
+                <div class="cleartax tax-p-20"></div>
+                <div class="tax-col-20 tax-pull-left align-right valign-middle">
+                  <div class="d-40">ผลประโยชน์สะสม : </div>
+                </div>
+                <div class="tax-col-70 tax-pull-left" id="accumulation_benefit">
+                  <input type="text" name="accumulation_benefit" onkeyup="onlyletter(event)" onkeypress="onlyletterPress(event)" onblur="setFormat(event)" class="tax-input">
+                  <div class="show-mobile custom-currency">บาท</div>
+                </div>
+                <div class="tax-col-10 tax-pull-left valign-middle hide-mobile-table">
+                  <div class="d-40">บาท</div>
+                </div>
+
+                <div class="cleartax tax-p-20"></div>
+                <div class="tax-col-20 tax-pull-left align-right valign-middle">
+                  <div class="d-40">เงินสมทบ : </div>
+                </div>
+                <div class="tax-col-70 tax-pull-left" id="contribution">
+                  <input type="text" name="contribution" onkeyup="onlyletter(event)" onkeypress="onlyletterPress(event)" onblur="setFormat(event)" class="tax-input">
+                  <div class="show-mobile custom-currency">บาท</div>
+                </div>
+                <div class="tax-col-10 tax-pull-left valign-middle hide-mobile-table">
+                  <div class="d-40">บาท</div>
+                </div>
+
+                <div class="cleartax tax-p-20"></div>
+                <div class="tax-col-20 tax-pull-left align-right valign-middle">
+                  <div class="d-40">ผลประโยชน์สมทบ : </div>
+                </div>
+                <div class="tax-col-70 tax-pull-left" id="contribution_benefit">
+                  <input type="text" name="contribution_benefit" onkeyup="onlyletter(event)" onkeypress="onlyletterPress(event)" onblur="setFormat(event)" class="tax-input">
+                  <div class="show-mobile custom-currency">บาท</div>
+                </div>
+                <div class="tax-col-10 tax-pull-left valign-middle hide-mobile-table">
+                  <div class="d-40">บาท</div>
+                </div>
+
+                <div class="cleartax tax-p-20"></div>
+                <div class="tax-hr tax-p-20"></div>
+
+                <div class="tax-col-20 tax-pull-left align-right valign-middle">
+                  <div class="d-40">อายุสมาชิกกองทุน: </div>
+                </div>
+                <div class="tax-col-10 tax-pull-left" id="fund_age">
+                  <input type="number" name="fund_age" class="tax-input" onkeyup="onlyletter(event)" onkeypress="onlyletterPress(event)">
+                  <div class="show-mobile custom-currency">ปี</div>
+                </div>
+                <div class="tax-col-10 tax-pull-left valign-middle hide-mobile-table">
+                  <div class="d-40">ปี</div>
+                </div>
+
+                <div class="cleartax tax-p-20"></div>
+                <div class="tax-col-20 tax-pull-left align-right valign-middle">
+                  <div class="d-40">อายุของท่านในปัจจุบัน: </div>
+                </div>
+                <div class="tax-col-10 tax-pull-left" id="age">
+                  <input type="number" name="age" class="tax-input" onkeyup="onlyletter(event)" onkeypress="onlyletterPress(event)">
+                  <div class="show-mobile custom-currency">ปี</div>
+                </div>
+                <div class="tax-col-10 tax-pull-left valign-middle hide-mobile-table">
+                  <div class="d-40">ปี</div>
+                </div>
+
+                <div class="cleartax tax-p-20"></div>
+                <div class="tax-col-20 tax-pull-left align-right valign-middle">
+                  <div class="d-40">อายุงานกับบริษัท<br>นายจ้างปัจจุบัน: </div>
+                </div>
+                <div class="tax-col-10 tax-pull-left" id="work_age">
+                  <input type="number" name="work_age" class="tax-input" onkeyup="onlyletter(event)" onkeypress="onlyletterPress(event)">
+                  <div class="show-mobile custom-currency">ปี</div>
+                </div>
+                <div class="tax-col-10 tax-pull-left valign-middle hide-mobile-table">
+                  <div class="d-40">ปี</div>
+                </div>
+
+                <div class="cleartax tax-p-20"></div>
+                <div class="tax-hr tax-p-20"></div>
+
+              </div>
+
+              <div class="tax-align-center m button_panel" align="center">
+                <div class="tax-col-60">
+                  <button type="submit" class="tax-btn">คำนวน</button>
+                </div>
+                <div class="cleartax tax-p-20"></div>
+              </div>
+              
+              <div class="sum-tax b2 sum_header_space" id="result-income">
+                <div class="tax-align-center tax-mobile-center">
+                  <div class="tax-col-20 tax-pull-left align-right valign-middle m">
+                    <div class="d-50 sum_header">เงินได้ที่ต้องนำมาคำนวณภาษี:</div>
+                  </div>
+                  <div class="tax-col-70 tax-pull-left tax-strong valign-middle m">
+                    <div class="align-right d-50 pr10" id="tax-result">0.00</div>
+                  </div>
+                  <div class="tax-col-10 tax-pull-left valign-middle l">
+                    <div class="d-50">บาท</span></div>
+                  </div>
+                  <div class="cleartax"></div>
+                </div>
+              </div>
+              <div id="tax-table">
+                <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <thead>
+                        <tr>
+                          <th class="f_b" width="30%">เงินได้สุทธิ (บาท)</th>
+                          <th class="f_b" width="30%">อัตราภาษี</th>
+                          <th class="f_b" width="30%">ภาษีที่ท่านต้องจ่าย</th>
+                          <th class="hide-mobile">&nbsp;<br>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="tb f_med"><div class="block-tax">0</div> - <div class="block-tax">150,000</div></td><td>0%</td><td id="tax-table-1">0.00</td><td class="hide-mobile">&nbsp;</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cleartax tax-p-10"></div>
+            <div class="cleartax tax-p-50"></div>
+
+            </div>
+          </form>
+      </div>
+      <div id="divtag" data-separator=" | " data-separatorvalue=" : "></div>
+
+    </section>
+  </div>
+
+</body>
+<script src="https://www.uobam.co.th/bundles/jquery?v=hI6KiQ1-tTXwpd9dfbRScSng-jMAScaen1wIolmzd_01"></script>
+<script src="./js/fundCal.js"></script>
+</html>
