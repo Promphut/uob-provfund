@@ -67,7 +67,9 @@ function onlyletterPress(evt) {
   }
 }
 function setFormat(evt) {
-  var val = parseInt(evt.target.value);
+  var _val = evt.target.value;
+  if(!_val) _val = 0;
+  var val = formatNumber(_val);
   evt.target.value = formatMoney(val.toFixed(2));
 }
 
